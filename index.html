@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
-    <title>WorldTime</title>
+    <title>Timezones</title>
 </head>
 
 <body>
@@ -29,33 +29,57 @@
             var singTime = new Date().toLocaleString("en-US", {
                 timeZone: "Asia/Singapore", day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'
             });
-            //console.log('Asia/Singapore: ' + singTime)
+            console.log('Asia/Singapore: ' + singTime)
 
-            document.getElementById('datetime1').innerHTML = singTime;
+            document.getElementById('singTime').innerHTML = singTime;
 
             var indiaTime = new Date().toLocaleString("en-US", {
                 timeZone: "Asia/Kolkata", day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'
             });
-            //console.log('Asia/Kolkata: ' + indiaTime)
-            document.getElementById('datetime2').innerHTML = indiaTime;
+            console.log('Asia/Kolkata: ' + indiaTime)
+            document.getElementById('indiaTime').innerHTML = indiaTime;
 
             var bahTime = new Date().toLocaleString("en-US", {
                 timeZone: "Asia/Bahrain", day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'
             });
-            document.getElementById('datetime3').innerHTML = bahTime;
-            //console.log('Asia/Bahrain: ' + bahTime)
+            document.getElementById('bahTime').innerHTML = bahTime;
+            console.log('Asia/Bahrain: ' + bahTime)
 
             var ukTime = new Date().toLocaleString("en-US", {
                 timeZone: "Europe/London", day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'
             });
-            document.getElementById('datetime4').innerHTML = ukTime;
-            //console.log('Europe/London: ' + ukTime)
+            document.getElementById('ukTime').innerHTML = ukTime;
+            console.log('Europe/London: ' + ukTime)
+          
+            var jpnTime = new Date().toLocaleString("en-US", {
+                timeZone: "Asia/Tokyo", day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'
+            });
+            document.getElementById('jpnTime').innerHTML = jpnTime;
+            console.log('America/New_York: ' + jpnTime)
 
+            var auSYDTime = new Date().toLocaleString("en-US", {
+                timeZone: "Australia/Sydney", day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'
+            });
+            document.getElementById('auSYDTime').innerHTML = auSYDTime;
+            //console.log('America/New_York: ' + auSYDTime)
+
+            var thaiTime = new Date().toLocaleString("en-US", {
+                timeZone: "Asia/Bangkok", day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'
+            });
+            document.getElementById('thaiTime').innerHTML = thaiTime;
+            //console.log('America/New_York: ' + thaiTime)
+            
             var usNYTime = new Date().toLocaleString("en-US", {
                 timeZone: "America/New_York", day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'
             });
-            document.getElementById('datetime5').innerHTML = usNYTime;
-            //console.log('America/New_York: ' + ukTime)
+            document.getElementById('usNYTime').innerHTML = usNYTime;
+            console.log('America/New_York: ' + usNYTime)
+          
+            var usLATime = new Date().toLocaleString("en-US", {
+                timeZone: "America/Los_Angeles", day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'
+            });
+            document.getElementById('usLATime').innerHTML = usLATime;
+            console.log('America/New_York: ' + usLATime)          
             display_c();
         }
         function setTheme() {
@@ -82,6 +106,7 @@
             for (var i = 0; i < elements.length; i++) {
                 elements[i].style.color = theme.darkText;
             }
+            document.getElementById("maintitle").style.color = theme.darkText;                  
             localStorage.setItem('themeused', "dark");
             //console.log('switchToDark');
         }
@@ -95,6 +120,7 @@
             for (var i = 0; i < elements.length; i++) {
                 elements[i].style.color = theme.lightText;
             }
+            document.getElementById("maintitle").style.color = theme.lightText;          
             localStorage.setItem('themeused', "light");
             //console.log('switchToLight');
         }
@@ -121,6 +147,12 @@
         .datetime {
             font-family: 'Roboto', sans-serif;
             font-size: 15px;
+        }
+      
+        #maintitle{
+            font-family: 'Roboto', sans-serif;
+            font-size: 18px;
+            font-weight: bold;
         }
 
         .buttondivouter {
@@ -166,53 +198,90 @@
             opacity: 1;
         }
     </style>
-    <div class="container mt-4">
-        <div class="row justify-content-around">
-            <div class="col-6 d-flex justify-content-center">
-                <span class="locName">Singapore:</span>
+        <div class="container mt-1">
+         <div class="row">
+                <div class="col-12 d-flex justify-content-center">
+                  <div id="maintitle" style="font-weight:bold;">World Time</div>
+              </div>
             </div>
-            <div class="col-6 d-flex justify-content-left">
-                <span class="datetime" id='datetime1'></span>
+         <div class="row">
+                <div class="col-6 d-flex justify-content-left">
+                    <span class="locName">Australia(Sydney):</span>
+                </div>
+                <div class="col-6 d-flex justify-content-left">
+                    <span class="datetime" id='auSYDTime'></span>
+                </div>
             </div>
+         <div class="row">
+                <div class="col-6 d-flex justify-content-left">
+                    <span class="locName">Japan:</span>
+                </div> 
+                <div class="col-6 d-flex justify-content-left">
+                    <span class="datetime" id='jpnTime'></span>
+                </div>
+            </div>      
+            <div class="row">
+                <div class="col-6 d-flex justify-content-left">
+                    <span class="locName">Singapore:</span>
+                </div>
+                <div class="col-6 d-flex justify-content-left">
+                    <span class="datetime" id='singTime'></span>
+                </div>
+            </div>
+          <div class="row">
+                <div class="col-6 d-flex justify-content-left">
+                    <span class="locName">Thailand:</span>
+                </div>
+                <div class="col-6 d-flex justify-content-left">
+                    <span class="datetime" id='thaiTime'></span>
+                </div>
+            </div>          
+         <div class="row">
+                <div class="col-6 d-flex justify-content-left">
+                    <span class="locName">India:</span>
+                </div>
+                <div class="col-6 d-flex justify-content-left">
+                    <span class="datetime" id='indiaTime'></span>
+                </div>
+            </div>
+         <div class="row">
+                <div class="col-6 d-flex justify-content-left">
+                    <span class="locName">Bahrain:</span>
+                </div>
+                <div class="col-6 d-flex justify-content-left">
+                    <span class="datetime" id='bahTime'></span>
+                </div>
+            </div>
+         <div class="row">
+                <div class="col-6 d-flex justify-content-left">
+                    <span class="locName">United Kingdom:</span>
+                </div>
+                <div class="col-6 d-flex justify-content-left">
+                    <span class="datetime" id='ukTime'></span>
+                </div>
+            </div>
+         <div class="row">
+                <div class="col-6 d-flex justify-content-left">
+                    <span class="locName">United States(NY):</span>
+                </div>
+                <div class="col-6 d-flex justify-content-left">
+                    <span class="datetime" id='usNYTime'></span>
+                </div>
+            </div>       
+         <div class="row">
+                <div class="col-6 d-flex justify-content-left">
+                    <span class="locName">United States(LA):<left/span>
+                </div>
+                <div class="col-6 d-flex justify-content-left">
+                    <span class="datetime" id='usLATime'></span>
+                </div>
+            </div>             
         </div>
-        <div class="row justify-content-around">
-            <div class="col-6 d-flex justify-content-center">
-                <span class="locName">India:</span>
-            </div>
-            <div class="col-6 d-flex justify-content-left">
-                <span class="datetime" id='datetime2'></span>
-            </div>
+        
+        <!--Snippet ends-->
+        <div class="buttondivouter">
+            <button class="darkbuttonoverlap" style="float: right;" onclick="switchToDark()">Dark</button>
+            <button class="lightbuttonoverlap" style="float: right;" onclick="switchToLight()">Light</button>
         </div>
-        <div class="row justify-content-between">
-            <div class="col-6 d-flex justify-content-center">
-                <span class="locName">Bahrain:</span>
-            </div>
-            <div class="col-6 d-flex justify-content-left">
-                <span class="datetime" id='datetime3'></span>
-            </div>
-        </div>
-        <div class="row justify-content-between">
-            <div class="col-6 d-flex justify-content-center">
-                <span class="locName">United Kingdom:</span>
-            </div>
-            <div class="col-6 d-flex justify-content-left">
-                <span class="datetime" id='datetime4'></span>
-            </div>
-        </div>
-        <div class="row justify-content-between">
-            <div class="col-6 d-flex justify-content-center">
-                <span class="locName">United States(NY):</span>
-            </div>
-            <div class="col-6 d-flex justify-content-left">
-                <span class="datetime" id='datetime5'></span>
-            </div>
-        </div>
-    </div>
-
-    <!--Snippet ends-->
-    <div class="buttondivouter">
-        <button class="darkbuttonoverlap" style="float: right;" onclick="switchToDark()">Dark</button>
-        <button class="lightbuttonoverlap" style="float: right;" onclick="switchToLight()">Light</button>
-    </div>
 
 </html>
