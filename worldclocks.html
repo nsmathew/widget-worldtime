@@ -1,0 +1,218 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="Enter your description here" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Timezones</title>
+</head>
+
+<body>
+    <script>
+        const colors = {
+            gray: "#2F3437",
+            white: "#FFFFFF",
+            grayblack: "rgba(255, 255, 255, 0.9)",
+            graywhite: "rgba(0, 0, 0, 0.9)"
+        };
+        const theme = {
+            darkBackground: colors.gray,
+            lightBackground: colors.white,
+            darkText: colors.grayblack,
+            lightText: colors.graywhite
+        };
+        function display_ct() {
+            var singTime = new Date().toLocaleString("en-US", {
+                timeZone: "Asia/Singapore", day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'
+            });
+            //console.log('Asia/Singapore: ' + singTime)
+
+            document.getElementById('datetime1').innerHTML = singTime;
+
+            var indiaTime = new Date().toLocaleString("en-US", {
+                timeZone: "Asia/Kolkata", day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'
+            });
+            //console.log('Asia/Kolkata: ' + indiaTime)
+            document.getElementById('datetime2').innerHTML = indiaTime;
+
+            var bahTime = new Date().toLocaleString("en-US", {
+                timeZone: "Asia/Bahrain", day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'
+            });
+            document.getElementById('datetime3').innerHTML = bahTime;
+            //console.log('Asia/Bahrain: ' + bahTime)
+
+            var ukTime = new Date().toLocaleString("en-US", {
+                timeZone: "Europe/London", day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'
+            });
+            document.getElementById('datetime4').innerHTML = ukTime;
+            //console.log('Europe/London: ' + ukTime)
+
+            var usNYTime = new Date().toLocaleString("en-US", {
+                timeZone: "America/New_York", day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'
+            });
+            document.getElementById('datetime5').innerHTML = usNYTime;
+            //console.log('America/New_York: ' + ukTime)
+            display_c();
+        }
+        function setTheme() {
+            console.log(localStorage.getItem('themeused'));
+            if (localStorage.getItem('themeused')) {
+                if (localStorage.getItem('themeused') == "light") {
+                    switchToLight();
+                } else if (localStorage.getItem('themeused') == "dark") {
+                    //console.log("In Dark")
+                    switchToDark();
+                }
+            } else {
+                switchToLight();
+            }
+        }
+
+        function switchToDark() {
+            document.body.style.background = theme.darkBackground;
+            elements = document.getElementsByClassName("locName");
+            for (var i = 0; i < elements.length; i++) {
+                elements[i].style.color = theme.darkText;
+            }
+            elements = document.getElementsByClassName("datetime");
+            for (var i = 0; i < elements.length; i++) {
+                elements[i].style.color = theme.darkText;
+            }
+            localStorage.setItem('themeused', "dark");
+            //console.log('switchToDark');
+        }
+        function switchToLight() {
+            document.body.style.background = theme.lightBackground;
+            elements = document.getElementsByClassName("locName");
+            for (var i = 0; i < elements.length; i++) {
+                elements[i].style.color = theme.lightText;
+            }
+            elements = document.getElementsByClassName("datetime");
+            for (var i = 0; i < elements.length; i++) {
+                elements[i].style.color = theme.lightText;
+            }
+            localStorage.setItem('themeused', "light");
+            //console.log('switchToLight');
+        }
+
+        function display_c() {
+            var refresh = 5000; // Refresh rate in milli seconds
+            mytime = setTimeout('display_ct()', refresh)
+        }
+
+
+        document.addEventListener('readystatechange', function () {
+            if (document.readyState === "complete") {
+                setTheme();
+                display_ct();
+            }
+        });
+    </script>
+    <style>
+        .locName {
+            font-family: 'Roboto', sans-serif;
+            font-size: 15px;
+        }
+
+        .datetime {
+            font-family: 'Roboto', sans-serif;
+            font-size: 15px;
+        }
+
+        .buttondivouter {
+            position: relative;
+            width: 300px;
+            height: 35px;
+            margin: 0 auto;
+            float: right;
+            opacity: 1;
+            transition: 3s;
+
+        }
+
+        .darkbuttonoverlap {
+            position: absolute;
+            z-index: 2;
+            height: 30px;
+            width: 80px;
+            top: 4px;
+            left: 180px;
+            opacity: 0;
+            transition: 3s;
+        }
+
+        .lightbuttonoverlap {
+            position: absolute;
+            z-index: 2;
+            height: 30px;
+            width: 80px;
+            top: 4px;
+            left: 80px;
+            opacity: 0;
+            transition: 3s;
+        }
+
+        .buttondivouter:hover .darkbuttonoverlap {
+            display: block;
+            opacity: 1;
+        }
+
+        .buttondivouter:hover .lightbuttonoverlap {
+            display: block;
+            opacity: 1;
+        }
+    </style>
+    <div class="container">
+        <div class="row justify-content-around">
+            <div class="col-6 d-flex justify-content-center">
+                <span class="locName">Singapore:</span>
+            </div>
+            <div class="col-6 d-flex justify-content-left">
+                <span class="datetime" id='datetime1'></span>
+            </div>
+        </div>
+        <div class="row justify-content-around">
+            <div class="col-6 d-flex justify-content-center">
+                <span class="locName">India:</span>
+            </div>
+            <div class="col-6 d-flex justify-content-left">
+                <span class="datetime" id='datetime2'></span>
+            </div>
+        </div>
+        <div class="row justify-content-between">
+            <div class="col-6 d-flex justify-content-center">
+                <span class="locName">Bahrain:</span>
+            </div>
+            <div class="col-6 d-flex justify-content-left">
+                <span class="datetime" id='datetime3'></span>
+            </div>
+        </div>
+        <div class="row justify-content-between">
+            <div class="col-6 d-flex justify-content-center">
+                <span class="locName">United Kingdom:</span>
+            </div>
+            <div class="col-6 d-flex justify-content-left">
+                <span class="datetime" id='datetime4'></span>
+            </div>
+        </div>
+        <div class="row justify-content-between">
+            <div class="col-6 d-flex justify-content-center">
+                <span class="locName">United States(NY):</span>
+            </div>
+            <div class="col-6 d-flex justify-content-left">
+                <span class="datetime" id='datetime5'></span>
+            </div>
+        </div>
+    </div>
+
+    <!--Snippet ends-->
+    <div class="buttondivouter">
+        <button class="darkbuttonoverlap" style="float: right;" onclick="switchToDark()">Dark</button>
+        <button class="lightbuttonoverlap" style="float: right;" onclick="switchToLight()">Light</button>
+    </div>
+
+</html>
